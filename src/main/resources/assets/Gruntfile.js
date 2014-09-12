@@ -7,11 +7,11 @@ module.exports = function(grunt) {
     meta: {
       version: '0.1.0'
     },
-    banner: '/*! PROJECT_NAME - v<%= meta.version %> - ' +
+    banner: '/*! dropwizard-backbone-app - v<%= meta.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '* http://PROJECT_WEBSITE/\n' +
+      '* https://github.com/yokuze/dropwizard-backbone-app/\n' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-      'YOUR_NAME; Licensed MIT */\n',
+      'Matt Luedke; Licensed MIT */\n',
     // Task configuration.
     concat: {
       options: {
