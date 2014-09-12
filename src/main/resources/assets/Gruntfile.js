@@ -12,17 +12,6 @@ module.exports = function(grunt) {
       '* https://github.com/yokuze/dropwizard-backbone-app/\n' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
       'Matt Luedke; Licensed MIT */\n',
-    // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['lib/FILE_NAME.js'],
-        dest: 'dist/FILE_NAME.js'
-      }
-    },
     bower: {
       target: {
         rjsConfig: 'init.js'
@@ -34,7 +23,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'dist/FILE_NAME.min.js'
+        dest: 'app/main.min.js'
       }
     },
     jshint: {
@@ -87,6 +76,18 @@ module.exports = function(grunt) {
     qunit: {
       files: ['test/**/*.html']
     },
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: "app",
+          mainConfigFile: "app/config.js",
+          optimize: "uglify",
+          out: "app/main.min.js",
+          include: "main",
+          findNestedDependencies: true
+        }
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -107,9 +108,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'less']);
+  grunt.registerTask('default', ['jshint', 'requirejs', 'less']);
   grunt.registerTask('bower', ['bower']);
 
 };

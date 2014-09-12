@@ -1,8 +1,6 @@
-require(["config"], function() {
-  require(["app", "router", "controller"], function(app, Router, Controller) {
+require(["app", "router", "controller", "backbone"], function(app, Router, Controller, Backbone) {
 	  
-    app.router = new Router({controller: new Controller()});
-    Backbone.history.start({ pushState: true, root: app.root });
-    
-  });
+	app.router = new Router({controller: new Controller()});
+	Backbone.history.start({ pushState: true, root: app.root });
+
 });
