@@ -1,11 +1,12 @@
 package com.anglesharp.app;
 
+import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yammer.dropwizard.config.Configuration;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
 
 public class AppConfiguration extends Configuration {
   
@@ -19,9 +20,9 @@ public class AppConfiguration extends Configuration {
   @Valid
   @NotNull
   @JsonProperty
-  private DatabaseConfiguration database = new DatabaseConfiguration();
+  private DataSourceFactory database = new DataSourceFactory();
 
-  public DatabaseConfiguration getDatabaseConfiguration() {
+  public DataSourceFactory getDatabase() {
       return database;
   }
   

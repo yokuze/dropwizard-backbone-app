@@ -15,15 +15,16 @@ import com.anglesharp.app.db.UserDAO;
 import com.anglesharp.app.modules.AppDevModule;
 import com.google.common.collect.ImmutableList;
 import com.hubspot.dropwizard.guice.GuiceBundle;
-import com.yammer.dropwizard.Service;
-import com.yammer.dropwizard.assets.AssetsBundle;
-import com.yammer.dropwizard.config.Bootstrap;
-import com.yammer.dropwizard.config.Environment;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
-import com.yammer.dropwizard.hibernate.HibernateBundle;
-import com.yammer.dropwizard.hibernate.SessionFactoryFactory;
 
-public class AppService extends Service<AppConfiguration> {
+import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.hibernate.SessionFactoryFactory;
+
+public class AppService extends Application<AppConfiguration> {
   
   final Logger log = LoggerFactory.getLogger(AppService.class);
   
@@ -37,13 +38,13 @@ public class AppService extends Service<AppConfiguration> {
   
   @Override
   public void initialize(Bootstrap<AppConfiguration> bootstrap) {
-    bootstrap.setName("dw-app");
     
     ImmutableList<Class<?>> classes = scanForEntities();
     hibernate = new HibernateBundle<AppConfiguration>(classes, new SessionFactoryFactory()) {
-      public DatabaseConfiguration getDatabaseConfiguration(AppConfiguration configuration) {
-          return configuration.getDatabaseConfiguration();
-      }
+		@Override
+		public DataSourceFactory getDataSourceFactory(AppConfiguration configuration) {
+			return configuration.getDatabase();
+		}
     };
     
     bootstrap.addBundle(hibernate);
