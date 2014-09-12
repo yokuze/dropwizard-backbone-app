@@ -23,6 +23,11 @@ module.exports = function(grunt) {
         dest: 'dist/FILE_NAME.js'
       }
     },
+    bower: {
+      target: {
+        rjsConfig: 'init.js'
+      }
+    },
     uglify: {
       options: {
         banner: '<%= banner %>'
@@ -78,8 +83,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-bower-requirejs');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('bower', ['bower']);
 
 };
