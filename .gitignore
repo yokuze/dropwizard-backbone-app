@@ -5,3 +5,5 @@
 target
 vendor/
 /bin
+src/main/resources/assets/app/vendor/bower
+src/main/resources/assets/node_modules
