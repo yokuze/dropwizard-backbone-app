@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.context.internal.ManagedSessionContext;
 import org.hibernate.criterion.Restrictions;
 
-import com.yammer.dropwizard.hibernate.AbstractDAO;
+import io.dropwizard.hibernate.AbstractDAO;
 
 public class DAO<T> extends AbstractDAO<T> {
   

@@ -31,7 +31,7 @@ import com.anglesharp.app.util.PasswordHash;
 import com.anglesharp.app.util.UUIDUtil;
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
-import com.yammer.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.hibernate.UnitOfWork;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
