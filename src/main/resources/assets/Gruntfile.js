@@ -62,6 +62,28 @@ module.exports = function(grunt) {
         src: ['lib/**/*.js', 'test/**/*.js']
       }
     },
+    less: {
+      development: {
+        options: {
+          paths: ["css"]
+        },
+        files: {
+          "css/main.css": "less/main.less"
+        }
+      },
+      production: {
+        options: {
+          paths: ["css"],
+          cleancss: true,
+          modifyVars: {
+            //imgPath: '"http://mycdn.com/path/to/images"',
+          }
+        },
+        files: {
+          "css/main.css": "less/main.less"
+        }
+      }
+    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -83,10 +105,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-requirejs');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'less']);
   grunt.registerTask('bower', ['bower']);
 
 };
