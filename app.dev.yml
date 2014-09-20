@@ -7,7 +7,7 @@ email:
 
 server:
   type: simple
-  applicationContextPath: /api
+  applicationContextPath: /
   adminContextPath: /admin
   connector:
     type: http

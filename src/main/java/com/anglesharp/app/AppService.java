@@ -50,8 +50,7 @@ public class AppService extends Application<AppConfiguration> {
     bootstrap.addBundle(hibernate);
     
     db = new DB();
-    
-    bootstrap.addBundle(new AssetsBundle("/assets/", "/"));
+    bootstrap.addBundle(new AssetsBundle("/assets/", "/", "index.htm"));
     
     devModule = new AppDevModule(db);
     bootstrap.addBundle(GuiceBundle.newBuilder()
@@ -72,6 +71,7 @@ public class AppService extends Application<AppConfiguration> {
     db.setRoles(roles);
     
     devModule.setConfig(configuration);
+    environment.jersey().setUrlPattern("/api/*");
   }
   
   private ImmutableList<Class<?>> scanForEntities() {
